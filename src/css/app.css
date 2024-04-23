@@ -1,1 +1,72 @@
-/* app global css */
+:root {
+    --main-black: #000000;
+    --main-jet: #333333;
+    --main-davy: #555555;
+    --main-silver: #CCCCCC;
+    --main-azure: #3399FF;
+}
+
+p {
+    font-size: 14px;
+    color: var(--main-jet);
+}
+
+header {
+    background-color: var(--main-black) !important;
+    height: 60px;
+}
+  
+.header-logo {
+    height: 50px;
+    width: 160px;
+    margin: 5px 0px 0px 15px;
+}
+
+.bg-black {
+    background-color: var(--main-black);
+}
+
+.bg-jet {
+    background-color: var(--main-jet);
+}
+
+.bg-davy {
+    background-color: var(--main-davy);
+}
+
+.bg-silver {
+    background-color: var(--main-silver);
+}
+
+.bg-azure {
+    background-color: var(--main-azure);
+}
+
+.black-btn {
+    background-color: var(--main-black);
+    color: white;
+}
+
+.main-btn {
+    background-color: var(--main-jet);
+    color: white;
+}
+  
+.secondary-btn {
+    background-color: var(--main-davy);
+    color: white;
+}
+
+.menu-btn {
+    color: var(--main-azure);
+}
+
+.clickable-link {
+    text-decoration: none;
+    color: var(--main-jet);
+    cursor: pointer;
+}
+
+.clickable-link:hover {
+    color: var(--main-davy);
+}

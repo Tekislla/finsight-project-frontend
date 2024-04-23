@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="hHh Lpr lFf">
     <q-header elevated>
       <q-toolbar>
         <q-btn
@@ -9,33 +9,47 @@
           icon="menu"
           aria-label="Menu"
           @click="toggleLeftDrawer"
+          class="menu-btn"
         />
 
         <q-toolbar-title>
-          Quasar App
+        <q-img
+          src="~assets/logo-filled-black.png"
+          class="header-logo"
+        />
         </q-toolbar-title>
 
-        <div>Quasar v{{ $q.version }}</div>
       </q-toolbar>
     </q-header>
 
     <q-drawer
       v-model="leftDrawerOpen"
-      show-if-above
+      show-if-dragging
       bordered
+      elevated
     >
       <q-list>
-        <q-item-label
-          header
-        >
-          Essential Links
-        </q-item-label>
 
         <EssentialLink
           v-for="link in essentialLinks"
           :key="link.title"
           v-bind="link"
         />
+        <q-item
+          clickable
+          tag="a"
+          @click="logout()"
+          >
+          <q-item-section
+            avatar
+          >
+            <q-icon :name="'exit_to_app'" class="icon" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label class="label-title">Sair</q-item-label>
+          </q-item-section>
+        </q-item>
       </q-list>
     </q-drawer>
 
@@ -47,52 +61,8 @@
 
 <script>
 import { defineComponent, ref } from 'vue'
+import { store } from 'src/store'
 import EssentialLink from 'components/EssentialLink.vue'
-
-const linksList = [
-  {
-    title: 'Docs',
-    caption: 'quasar.dev',
-    icon: 'school',
-    link: 'https://quasar.dev'
-  },
-  {
-    title: 'Github',
-    caption: 'github.com/quasarframework',
-    icon: 'code',
-    link: 'https://github.com/quasarframework'
-  },
-  {
-    title: 'Discord Chat Channel',
-    caption: 'chat.quasar.dev',
-    icon: 'chat',
-    link: 'https://chat.quasar.dev'
-  },
-  {
-    title: 'Forum',
-    caption: 'forum.quasar.dev',
-    icon: 'record_voice_over',
-    link: 'https://forum.quasar.dev'
-  },
-  {
-    title: 'Twitter',
-    caption: '@quasarframework',
-    icon: 'rss_feed',
-    link: 'https://twitter.quasar.dev'
-  },
-  {
-    title: 'Facebook',
-    caption: '@QuasarFramework',
-    icon: 'public',
-    link: 'https://facebook.quasar.dev'
-  },
-  {
-    title: 'Quasar Awesome',
-    caption: 'Community Quasar projects',
-    icon: 'favorite',
-    link: 'https://awesome.quasar.dev'
-  }
-]
 
 export default defineComponent({
   name: 'MainLayout',
@@ -102,15 +72,41 @@ export default defineComponent({
   },
 
   setup () {
+    const essentialLinks = ref([])
     const leftDrawerOpen = ref(false)
 
+    const loadMenuList = async () => {
+      try {
+        const response = await import('src/config/menu-list.json')
+        essentialLinks.value = response.default
+      } catch (error) {
+        console.error('Erro ao carregar os links do menu:', error)
+      }
+    }
+
+    loadMenuList()
+
     return {
-      essentialLinks: linksList,
+      essentialLinks,
       leftDrawerOpen,
+
       toggleLeftDrawer () {
         leftDrawerOpen.value = !leftDrawerOpen.value
+      },
+      logout () {
+        // TODO: Ajustar logout para funcionar e redirecionar sem precisar recarregar a página
+        store.commit('logout')
+        this.$router.go()
       }
+    }
+  },
+
+  mounted () {
+    if (!store.getters.isLogged) {
+      this.$router.push('/')
     }
   }
 })
 </script>
+<style>
+</style>
