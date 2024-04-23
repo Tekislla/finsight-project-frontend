@@ -1,0 +1,42 @@
+[
+  {
+    "title": "Dashboard",
+    "caption": "Ver estatísticas",
+    "icon": "dashboard",
+    "link": "/"
+  },
+  {
+    "title": "Notificações",
+    "caption": "2 novas notificações",
+    "icon": "notifications",
+    "link": "/"
+  },
+  {
+    "title": "Minhas finanças",
+    "caption": "Administrar finanças",
+    "icon": "attach_money",
+    "link": "/app/financas"
+  },
+  {
+    "title": "Meus compromissos",
+    "caption": "Ver ou adicionar compromissos",
+    "icon": "event",
+    "link": "/app/compromissos"
+  },
+  {
+    "title": "Relatórios",
+    "caption": "Exportar relatórios",
+    "icon": "record_voice_over",
+    "link": "/"
+  },
+  {
+    "title": "Perfil",
+    "icon": "account_circle",
+    "link": "/"
+  },
+  {
+    "title": "Configurações",
+    "icon": "settings",
+    "link": "/"
+  }
+]

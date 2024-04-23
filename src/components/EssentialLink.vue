@@ -2,19 +2,18 @@
   <q-item
     clickable
     tag="a"
-    target="_blank"
-    :href="link"
+    @click="goToLink(link)"
   >
     <q-item-section
       v-if="icon"
       avatar
     >
-      <q-icon :name="icon" />
+      <q-icon :name="icon" class="icon" />
     </q-item-section>
 
     <q-item-section>
-      <q-item-label>{{ title }}</q-item-label>
-      <q-item-label caption>{{ caption }}</q-item-label>
+      <q-item-label class="label-title">{{ title }}</q-item-label>
+      <q-item-label class="label-caption">{{ caption }}</q-item-label>
     </q-item-section>
   </q-item>
 </template>
@@ -37,13 +36,33 @@ export default defineComponent({
 
     link: {
       type: String,
-      default: '#'
+      default: ''
     },
 
     icon: {
       type: String,
       default: ''
     }
+  },
+  methods: {
+    goToLink (link) {
+      this.$router.push(link)
+    }
   }
 })
 </script>
+<style>
+.label-title {
+  font-weight: bold;
+  color: var(--main-davy);
+}
+
+.label-caption {
+  font-size: 14px;
+  color: var(--main-davy);
+}
+
+.icon {
+  color: var(--main-davy);
+}
+</style>
