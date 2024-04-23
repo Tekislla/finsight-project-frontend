@@ -5,7 +5,7 @@ export const store = createStore({
   state () {
     return {
       user: {
-        name: 'John',
+        name: '',
         email: '',
         token: ''
       }

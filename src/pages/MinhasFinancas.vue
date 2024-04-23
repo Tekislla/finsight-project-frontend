@@ -82,7 +82,6 @@
           </q-table>
         </q-card-section>
       </q-card>
-
     </div>
   </q-page>
 </template>

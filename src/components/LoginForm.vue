@@ -24,7 +24,7 @@
       <q-btn v-on:click="login()" size="lg" class="main-btn full-width" label="Entrar" no-caps/>
     </q-card-actions>
   </q-card>
-  </template>
+</template>
 
 <script>
 import { defineComponent, ref } from 'vue'
